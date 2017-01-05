@@ -1,0 +1,5 @@
+site_name: ActiveDirectoryToolkit Documentation
+pages:
+- Home: index.md
+- Functions:
+  - Get-ADUserLastLogon: en-US/Get-ADUserLastLogon.md
