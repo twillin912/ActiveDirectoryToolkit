@@ -1,5 +1,19 @@
-# Implement your module commands in this script.
+#Get public and private function definition files.
+    $Public  = @( Get-ChildItem -Path $PSScriptRoot\Public\*.ps1 -ErrorAction SilentlyContinue )
+    $Private = @( Get-ChildItem -Path $PSScriptRoot\Private\*.ps1 -ErrorAction SilentlyContinue )
 
+#Dot source the files
+    foreach ( $Import in @($Public + $Private))
+    {
+        try
+        {
+            . $Import.fullname
+        }
+        catch
+        {
+            Write-Error -Message "Failed to import function $($Import.fullname): $_"
+        }
+}
 
-# Export only the functions using PowerShell standard verb-noun naming.
-Export-ModuleMember -Function *-*
+#Export public functions
+Export-ModuleMember -Function $Public.Basename
