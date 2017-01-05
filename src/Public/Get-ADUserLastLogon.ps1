@@ -16,7 +16,7 @@ function Get-ADUserLastLogon {
         Author: Trent Willingham
         Check out my other scripts and projects @ https://github.com/twillin912
     .LINK
-        https://poshzabbixtools.readthedocs.io/en/latest/Commands/Get-ZabbixHost
+        http://activedirectorytoolkit.readthedocs.io/en/latest/en-US/Get-ADUserLastLogon
     #>
     [CmdletBinding()]
     [OutputType([PSObject])]
