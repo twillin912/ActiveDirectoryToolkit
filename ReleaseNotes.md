@@ -1,7 +1,11 @@
-# What is new in ActiveDirectoryToolkit 0.1.0
+# What is new in ActiveDirectoryToolkit v0.1
 
 ## New Features
 
-### Diable-CorporateUser
+### Disable-CorporateUser
 
-This function will disable a AD user account and move that account to a disabled users OU.
+The Disable-CorporateUser cmdlet disables an Active Directory user account and performs additional cleanup steps including removing from Active Directory group, move the object to the DisabledUsers OU and hiding the mailbox from the address book.
+
+### Get-ADUserLastLogon
+
+The Get-ADUserLastLogon cmdlet gets the last logon date for Active Directory user(s) querying all active domain controllers in the current domain.
