@@ -6,4 +6,6 @@ pages:
   - ActiveDirectoryToolkit Basics:
     - Quick Start: quickstart.md
   - Functions:
+    - Disable-CorporateUser: Functions/Disable-CorporateUser.md
+    - Get-ADUserLastLogon: Functions/Get-ADUserLastLogon.md
 

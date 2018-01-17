@@ -1,19 +1,28 @@
+#Requires -Version 3.0 -Module 'ActiveDirectory'
 function Disable-CorporateUser {
-    #Requires -Version 3.0 -Module 'ActiveDirectory'
     <#
     .SYNOPSIS
-        Short description
+        Disable one or more AD user accounts with cleanup steps.
     .DESCRIPTION
-        Long description
+        The Disable-CorporateUser cmdlet disables an Active Directory user account and performs additional cleanup steps including removing from Active Directory group, move the object to the DisabledUsers OU and hiding the mailbox from the address book.
     .EXAMPLE
-        PS C:\> <example usage>
-        Explanation of what the example does
+        PS C:\> Disable-CorporateUser -Identity 'MyUserName'
+        Disables the account with SamAccountName: MyUserName.
+    .EXAMPLE
+        PS C:\> Disable-CorporateUser -Identity 'CN=John Smith,OU=UserAccounts,DC=MYDOMAIN,DC=COM'
+        Disables the account with DistinguishedName: "CN=John Smith,OU=UserAccounts,DC=MYDOMAIN,DC=COM".
+    .EXAMPLE
+        PS C:\> Disable-CorporateUser -Filter {Name -like '* Smith'}
+        Disables all users with the last name 'Smith'.
     .INPUTS
         Inputs (if any)
     .OUTPUTS
-        Output (if any)
+        None
     .NOTES
-        General notes
+        Author: Trent Willingham
+        Check out my other scripts and projects @ https://github.com/twillin912
+    .LINK
+        http://activedirectorytoolkit.readthedocs.io/en/latest/en-US/Disable-CorporateUser
     #>
     [CmdletBinding(
         ConfirmImpact = 'High',
@@ -21,7 +30,7 @@ function Disable-CorporateUser {
         SupportsShouldProcess
     )]
     param (
-        # Parameter help description
+        # Specifies an Active Directory user account object by providing either SAM Account Name or Distinguished Name.
         [Parameter(
             Mandatory = $true,
             ParameterSetName = 'Identity',
@@ -30,14 +39,14 @@ function Disable-CorporateUser {
         )]
         [string[]] $Identity,
 
-        # Parameter help description
+        # Specifies a query string that retrieves Active Directory objects.
         [Parameter(
             Mandatory = $true,
             ParameterSetName = 'Filter'
         )]
-        [scriptblock] $Filter,
+        [string] $Filter,
 
-        # Parameter help description
+        # Specified the name of the OU to move the disabled users to.
         [Parameter(
             Mandatory = $false,
             Position = 2

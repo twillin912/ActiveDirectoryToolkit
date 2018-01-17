@@ -1,15 +1,14 @@
 #Requires -Version 3.0 -Module ActiveDirectory
 function Get-ADUserLastLogon {
     <#
--
     .SYNOPSIS
         Gets last logon date for one or more Active Directory users.
     .DESCRIPTION
         The Get-ADUserLastLogon cmdlet gets the last logon date for Active Directory user(s) querying all active domain controllers in the current domain.
     .EXAMPLE
-        Get-ADUserLastLogin -UserName MyUser
+        Get-ADUserLastLogin -Identity 'MyUserName'
     .INPUTS
-        A user object is recieved by the UserName parameter.
+        None
     .OUTPUTS
         Returns one or more custom objects.
     .NOTES
@@ -20,7 +19,6 @@ function Get-ADUserLastLogon {
     #>
     [CmdletBinding()]
     [OutputType([PSObject])]
-
     param (
         # Specifies an Active Directory user object by providing the user logon name.
         [Parameter(Mandatory = $true, Position = 0)]

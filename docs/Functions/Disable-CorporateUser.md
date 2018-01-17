@@ -1,61 +1,75 @@
 ---
 external help file: ActiveDirectoryToolkit-help.xml
 Module Name: ActiveDirectoryToolkit
-online version:
+online version: http://activedirectorytoolkit.readthedocs.io/en/latest/en-US/Disable-CorporateUser
 schema: 2.0.0
 ---
 
 # Disable-CorporateUser
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Disable one or more AD user accounts with cleanup steps.
 
 ## SYNTAX
 
 ### Identity (Default)
 ```
-Disable-CorporateUser [-Identity] <String[]> [-OUName <String>] [-WhatIf] [-Confirm] [<CommonParameters>]
+Disable-CorporateUser [-Identity] <String[]> [[-OUName] <String>] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ### Filter
 ```
-Disable-CorporateUser -Filter <ScriptBlock> [-OUName <String>] [-WhatIf] [-Confirm] [<CommonParameters>]
+Disable-CorporateUser -Filter <String> [[-OUName] <String>] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+The Disable-CorporateUser cmdlet disables an Active Directory user account and performs additional cleanup steps including removing from Active Directory group, move the object to the DisabledUsers OU and hiding the mailbox from the address book.
 
 ## EXAMPLES
 
-### Example 1
+### EXAMPLE 1
 ```
-PS C:\> {{ Add example code here }}
+Disable-CorporateUser -Identity 'MyUserName'
 ```
 
-{{ Add example description here }}
+Disables the account with SamAccountName: MyUserName.
+
+### EXAMPLE 2
+```
+Disable-CorporateUser -Identity 'CN=John Smith,OU=UserAccounts,DC=MYDOMAIN,DC=COM'
+```
+
+Disables the account with DistinguishedName: "CN=John Smith,OU=UserAccounts,DC=MYDOMAIN,DC=COM".
+
+### EXAMPLE 3
+```
+Disable-CorporateUser -Filter {Name -like '* Smith'}
+```
+
+Disables all users with the last name 'Smith'.
 
 ## PARAMETERS
 
-### -Confirm
-Prompts you for confirmation before running the cmdlet.
+### -Identity
+Specifies an Active Directory user account object by providing either SAM Account Name or Distinguished Name.
 
 ```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases: cf
+Type: String[]
+Parameter Sets: Identity
+Aliases:
 
-Required: False
-Position: Named
-Default value: False
-Accept pipeline input: False
+Required: True
+Position: 2
+Default value: None
+Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 
 ### -Filter
-{{Fill Filter Description}}
+Specifies a query string that retrieves Active Directory objects.
 
 ```yaml
-Type: ScriptBlock
+Type: String
 Parameter Sets: Filter
 Aliases:
 
@@ -66,18 +80,18 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -Identity
-{{Fill Identity Description}}
+### -OUName
+Specified the name of the OU to move the disabled users to.
 
 ```yaml
-Type: String[]
-Parameter Sets: Identity
+Type: String
+Parameter Sets: (All)
 Aliases:
 
-Required: True
-Position: 1
-Default value: None
-Accept pipeline input: True (ByValue)
+Required: False
+Position: 3
+Default value: Disabled Users
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
@@ -92,18 +106,18 @@ Aliases: wi
 
 Required: False
 Position: Named
-Default value: False
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -OUName
-{{Fill OUName Description}}
+### -Confirm
+Prompts you for confirmation before running the cmdlet.
 
 ```yaml
-Type: String
+Type: SwitchParameter
 Parameter Sets: (All)
-Aliases:
+Aliases: cf
 
 Required: False
 Position: Named
@@ -117,12 +131,17 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## INPUTS
 
-### System.String[]
+### Inputs (if any)
 
 ## OUTPUTS
 
-### System.Object
+### None
 
 ## NOTES
+Author: Trent Willingham
+Check out my other scripts and projects @ https://github.com/twillin912
 
 ## RELATED LINKS
+
+[http://activedirectorytoolkit.readthedocs.io/en/latest/en-US/Disable-CorporateUser](http://activedirectorytoolkit.readthedocs.io/en/latest/en-US/Disable-CorporateUser)
+
