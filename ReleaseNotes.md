@@ -2,5 +2,6 @@
 
 ## New Features
 
+### Diable-CorporateUser
 
-
+This function will disable a AD user account and move that account to a disabled users OU.
