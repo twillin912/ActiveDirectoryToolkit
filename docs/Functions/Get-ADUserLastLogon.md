@@ -1,14 +1,14 @@
 ---
 external help file: ActiveDirectoryToolkit-help.xml
 Module Name: ActiveDirectoryToolkit
-online version: http://activedirectorytoolkit.readthedocs.io/en/latest/en-US/Get-ADUserLastLogon/
+online version:
 schema: 2.0.0
 ---
 
 # Get-ADUserLastLogon
 
 ## SYNOPSIS
-Gets last logon date for one or more Active Directory users.
+{{Fill in the Synopsis}}
 
 ## SYNTAX
 
@@ -17,14 +17,16 @@ Get-ADUserLastLogon [-Identity] <String[]> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Get-ADUserLastLogon cmdlet gets the last logon date for Active Directory user(s) querying all active domain controllers in the current domain.
+{{Fill in the Description}}
 
 ## EXAMPLES
 
-### EXAMPLE 1
+### Example 1
 ```
-Get-ADUserLastLogin -UserName MyUser
+PS C:\> {{ Add example code here }}
 ```
+
+{{ Add example description here }}
 
 ## PARAMETERS
 
@@ -48,17 +50,12 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## INPUTS
 
-### A user object is recieved by the UserName parameter.
+### None
 
 ## OUTPUTS
 
-### Returns one or more custom objects.
+### System.Management.Automation.PSObject
 
 ## NOTES
-Author: Trent Willingham
-Check out my other scripts and projects @ https://github.com/twillin912
 
 ## RELATED LINKS
-
-[https://poshzabbixtools.readthedocs.io/en/latest/Commands/Get-ZabbixHost](https://poshzabbixtools.readthedocs.io/en/latest/Commands/Get-ZabbixHost)
-
