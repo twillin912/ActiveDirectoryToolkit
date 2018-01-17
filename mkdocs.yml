@@ -1,0 +1,11 @@
+site_name: ActiveDirectoryToolkit Documentation
+repo_url: https://github.com/twillin912/ActiveDirectoryToolkit
+theme: readthedocs
+pages:
+  - Home: index.md
+  - ActiveDirectoryToolkit Basics:
+    - Quick Start: quickstart.md
+  - Functions:
+    - Disable-CorporateUser: Functions/Disable-CorporateUser.md
+    - Get-ADUserLastLogon: Functions/Get-ADUserLastLogon.md
+
