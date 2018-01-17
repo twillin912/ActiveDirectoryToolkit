@@ -1,7 +1,7 @@
 # ActiveDirectoryToolkit Release History
 
-## 0.1.0 (0000-00-00)
+## v0.1 (2018-01-17)
 
 - New Functions
-
   - Disable-CorporateUser
+  - Get-ADUserLastLogon

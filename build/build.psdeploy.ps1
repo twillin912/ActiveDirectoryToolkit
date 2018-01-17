@@ -8,10 +8,10 @@ if(
 {
     Deploy Module {
         By PSGalleryModule {
-            FromSource $ENV:BHProjectName
+            FromSource $env:BHPSModulePath
             To PSGallery
             WithOptions @{
-                ApiKey = $ENV:NugetApiKey
+                ApiKey = $env:NugetApiKey
             }
         }
     }
@@ -19,13 +19,13 @@ if(
 
 # Publish to AppVeyor if we're in AppVeyor
 if(
-    $env:BHProjectName -and $ENV:BHProjectName.Count -eq 1 -and
+    $env:BHProjectName -and $env:BHProjectName.Count -eq 1 -and
     $env:BHBuildSystem -eq 'AppVeyor'
    )
 {
     Deploy DeveloperBuild {
         By AppVeyorModule {
-            FromSource $ENV:BHProjectName
+            FromSource $env:BHPSModulePath
             To AppVeyor
             WithOptions @{
                 Version = $env:APPVEYOR_BUILD_VERSION
@@ -34,18 +34,19 @@ if(
     }
 }
 
-# Publish to user's module folder
+# Publish to internal gallery
 if(
     $env:BHProjectName -and $env:BHProjectName.Count -eq 1 -and
-    $env:BHBuildSystem -eq 'Unknown'
+    $env:BHBuildSystem -eq 'Unknown' -and $env:InternalGallery -and
+    $env:NugetApiKey
    )
 {
-    Deploy DeveloperBuild {
-        By FileSystem Modules {
+    Deploy Module {
+        By PSGalleryModule {
             FromSource $env:BHPSModulePath
-            To "$HOME\Documents\WindowsPowerShell\Modules\$env:BHProjectName"
+            To $env:InternalGallery
             WithOptions @{
-                Mirror = $true
+                ApiKey = $env:NugetApiKey
             }
         }
     }
