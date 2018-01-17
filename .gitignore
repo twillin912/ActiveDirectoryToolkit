@@ -1,2 +1,11 @@
-# Don't checkin the Release output dir.
-Release/
+# Visual Studio Core
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+
+# Folder config file
+Desktop.ini
+
+# Artifacts temp dir.
+[Aa]rtifacts/

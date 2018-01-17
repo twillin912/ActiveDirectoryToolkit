@@ -1,4 +1,14 @@
-#Requires -Modules psake
+[CmdletBinding()]
+Param (
+    [string] $Task = '.'
+)
 
-# Builds the module by invoking psake on the build.psake.ps1 script.
-Invoke-PSake $PSScriptRoot\build.psake.ps1 -taskList Build
+$RequiredModules = @('BuildHelpers', 'InvokeBuild', 'Pester', 'PlatyPS', 'PSDeploy', 'PSScriptAnalyzer')
+
+Get-PackageProvider -Name NuGet -ForceBootstrap | Out-Null
+foreach ( $Module in $RequiredModules ) {
+    if ( ! ( Get-Module -Name $Module -ListAvailable ) ) { Install-Module -Name $Module -Scope CurrentUser -Force | Out-Null }
+}
+
+Set-BuildEnvironment -Force
+Invoke-Build -File $env:BHProjectPath\build\build.script.ps1 -Task $Task
